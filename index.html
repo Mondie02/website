@@ -18,7 +18,7 @@ body {
 .container {
     max-width: 1200px;
     margin: auto;
-    padding: 40px 24px;
+    padding: 20px 16px;
 }
 
 .navbar {
@@ -128,7 +128,7 @@ body {
 
 .card img {
     width: 100%;
-    height: 300px;
+    height: 220px;
     object-fit: cover;
 }
 
@@ -194,7 +194,7 @@ input {
     display: block;
     margin-bottom: 10px;
     padding: 10px;
-    width: 300px;
+    width: 100%;
 }
 
 .payment-method label {
@@ -603,8 +603,9 @@ body.sticky-padding {
 .checkout-container {
     align-items: start;
     display: grid;
-    grid-template-columns: 1.5fr 0.9fr;
-    gap: 40px;
+    grid-template-columns: 1fr;
+    padding: 16px;
+    gap: 20px;
 
     max-width: 500px; 
     width: 100%;
@@ -622,7 +623,7 @@ body.sticky-padding {
 
 .checkout-left h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 32px;
+    font-size: 24px;
     margin-bottom: 25px;
 }
 
@@ -998,18 +999,27 @@ html, body {
 @media (max-width: 768px) {
 
     .navbar {
-        padding: 16px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
     }
-
+    .logo {
+    font-size: 18px;
+    }   
     .nav-links {
-        gap: 16px;
-        font-size: 14px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    }
+    .nav-links a {
+    font-size: 13px;
     }
 
     .hero {
         flex-direction: column;
-        padding: 40px 20px;
-        height: auto;
+        padding: 30px 16px;
         text-align: center;
     }
 
@@ -1326,8 +1336,6 @@ html, body {
   <div class="checkout-container">
 
     <div class="checkout-left">
-
-      <button class="back-btn" onclick="toggleCart()">← Back to Cart</button>
 
       <h1>Checkout</h1>
 
