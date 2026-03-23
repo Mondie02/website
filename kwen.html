@@ -1,0 +1,1745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>KWEN’S MAKE UP</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: #111;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px 24px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 40px;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-links a {
+    cursor: pointer;
+}
+.nav-links a.active {
+    font-weight: 600;
+    border-bottom: 2px solid #000;
+    padding-bottom: 4px;
+}
+#navbar.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.75); 
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.08); 
+    z-index: 9999;
+}
+
+.hero {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    padding: 0 80px;
+    padding-bottom: 60px;
+}
+
+.hero-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.hero p {
+    margin: 16px 0 32px;
+    color: #555;
+}
+
+.btn {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #000;
+    color: #fff;
+    padding: 16px 32px;
+}
+
+.btn-secondary {
+    border: 1px solid #000;
+    padding: 12px 20px;
+    background: transparent;
+}
+
+.btn-secondary:hover {
+    background: #000;
+    color: #fff;
+}
+
+.products {
+    margin-top: 40px;
+}
+
+.products h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+.card {
+    background: #F6F1EB;
+    padding: 20px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+.card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.cart-popup {
+    position: fixed;
+    top: 0;
+    right: -420px;
+    width: 380px;
+    height: 100%;
+    
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(20px);
+
+    transition: 0.4s ease;
+    padding: 30px 25px;
+    overflow-y: auto;
+
+    box-shadow: -10px 0 40px rgba(0,0,0,0.08);
+    z-index: 10000;
+}
+
+.cart-popup.active {
+    right: 0;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.qty {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.qty button {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.qty button:hover {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+}
+
+.checkout, .summary {
+    display: none;
+    padding: 40px;
+}
+
+input {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 300px;
+}
+
+.payment-method label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 8px 0;
+}
+
+.footer {
+    margin-top: 100px;
+    padding: 40px;
+    text-align: center;
+    border-top: 1px solid #EAEAEA;
+}
+
+.cart-bounce {
+    animation: cartBounce 0.4s ease;
+}
+
+@keyframes cartBounce {
+    0%   { transform: scale(1); }
+    30%  { transform: scale(1.25); }
+    60%  { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+@keyframes bounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+
+.checkout-box {
+    background: #fff;
+    padding: 40px;
+    width: 400px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.checkout-box h2 {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+}
+
+.form-group label {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    color: #888;
+    font-size: 14px;
+    transition: 0.2s;
+    background: #fff;
+    padding: 0 4px;
+}
+
+.form-group input:focus + label,
+.form-group input:valid + label {
+    top: -8px;
+    font-size: 12px;
+    color: #000;
+}
+
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.payment-card {
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.payment-card:hover {
+    border-color: #000;
+}
+
+.payment-card input {
+    margin-right: 10px;
+}
+
+.payment-card input:checked + span {
+    font-weight: bold;
+}
+
+.place-order-btn {
+    margin-top: 20px;
+    width: 100%;
+    padding: 16px;
+
+    background: black;
+    color: white;
+
+    border: none;
+    border-radius: 12px;
+
+    font-size: 14px;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.place-order-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.back-btn:hover {
+    color: #000;
+}
+
+.success-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 20000;
+}
+
+.success-box {
+    background: #fff;
+    padding: 40px;
+    border-radius: 16px;
+    text-align: center;
+    animation: pop 0.3s ease;
+}
+
+.checkmark {
+    font-size: 40px;
+    color: green;
+    margin-bottom: 10px;
+    animation: bounce 0.6s;
+}
+
+@keyframes pop {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.navbar {
+    box-sizing: border-box; 
+}
+
+.cart-popup {
+    z-index: 10000;
+}
+
+.checkout {
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    padding: 120px 20px 80px;
+    background: #f5f5f5;
+}
+
+.checkout.active {
+    display: flex;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+body.sticky-padding {
+    padding-top: 80px; 
+}
+
+.cart-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cart-icon {
+    display: flex;
+}
+
+
+.cart-count {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background: black;
+    color: white;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+.card {
+    background: transparent;
+    padding: 0;
+}
+
+.card img {
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+.product-category {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #888;
+    margin-bottom: 6px;
+}
+
+.product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    margin-bottom: 6px;
+}
+
+.price {
+    margin-bottom: 12px;
+}
+
+.select-box {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.add-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: none;
+    background: #8a8682;
+    color: #fff;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.add-btn:hover {
+    background: #000;
+}
+
+.custom-select {
+    position: relative;
+    margin-bottom: 12px;
+    user-select: none;
+}
+
+.select-trigger {
+    background: #f1f1f1;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 14px;
+    color: #555;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.select-trigger.active {
+    background: #e8e8e8;
+}
+
+.arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+
+    transition: transform 0.3s ease;
+    transform-origin: center;
+}
+
+.select-trigger.active .arrow {
+    transform: rotate(180deg);
+}
+
+.options {
+    position: absolute;
+    width: 100%;
+    background: #f1f1f1;
+    border-radius: 12px;
+    margin-top: 8px;
+    padding: 10px 0;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.options.show {
+    max-height: 300px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.options div {
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.options div:hover {
+    background: #e0e0e0;
+}
+
+.options {
+    position: absolute;
+    width: 100%;
+    background: #f1f1f1;
+    border-radius: 12px;
+    margin-top: 8px;
+    padding: 10px 0;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    z-index: 10;
+}
+
+.options div {
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.options div:hover {
+    background: #e0e0e0;
+}
+
+.order-summary {
+    margin-top: 25px;
+    padding: 20px;
+
+    border-radius: 16px;
+    background: rgba(0,0,0,0.03);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+}
+
+.summary-row.total {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.checkout-container {
+    align-items: start;
+    display: grid;
+    grid-template-columns: 1.5fr 0.9fr;
+    gap: 40px;
+
+    max-width: 500px; 
+    width: 100%;
+
+    background: #fff;
+    padding: 40px;
+
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.06);
+}
+
+.checkout-left {
+    width: 100%;
+}
+
+.checkout-left h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    margin-bottom: 25px;
+}
+
+.checkout-left h3 {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    color: #888;
+    margin: 30px 0 12px;
+}
+
+.checkout-left input {
+    width: 100%;
+    padding: 12px;
+
+    border-radius: 10px;
+    border: 1px solid #ddd;
+
+    background: #fafafa;
+    transition: 0.2s;
+
+    margin-bottom: 16px;
+}
+
+.checkout-left input:focus {
+    border-color: #000;
+    background: #fff;
+
+}
+.row {
+    display: flex;
+    gap: 16px;
+}
+
+.row input {
+    flex: 1;
+}
+
+.checkout-right {
+    background: #f5f1eb;
+    padding: 25px;
+    border-radius: 16px;
+
+    height: fit-content;
+}
+
+.checkout-right h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.checkout-item {
+    display: grid;
+    grid-template-columns: 50px 1fr auto;
+    gap: 12px;
+    align-items: center;
+}
+
+.summary-line,
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.checkout-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.checkout-btn {
+    margin-top: auto;
+
+    width: 100%;
+    padding: 16px;
+
+    background: #000;
+    color: #fff;
+
+    border: none;
+    border-radius: 10px;
+
+    font-size: 13px;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.checkout-btn:hover {
+    background: #222;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.nav-links a {
+    position: relative;
+    padding-bottom: 4px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background: black;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.nav-links a:hover {
+    color: #555;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.hero-text {
+    animation: fadeUp 0.8s ease;
+}
+
+.hero-image {
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.section {
+    margin-top: 100px;
+    padding: 80px 20px;
+}
+
+.section + .section {
+    margin-top: 40px;
+}
+
+.section-box {
+    max-width: 900px;
+    margin: auto;
+    background: #f8f6f3;
+    padding: 60px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.section.light .section-box {
+    background: #f1ede7;
+}
+
+.section h2 {
+    font-family: 'Playfair Display', serif; 
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.section p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+.close-cart {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    color: #777;
+    transition: 0.2s;
+}
+
+.close-cart:hover {
+    color: #000;
+}
+
+.section + .section {
+    position: relative;
+    margin-top: 80px;
+    padding-top: 80px;
+}
+
+.section + .section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #000, transparent);
+    opacity: 0.3;
+}
+
+.products {
+    position: relative;
+    padding-top: 80px; 
+}
+
+.products::before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    width: 60%;
+    height: 2px;
+    
+    background: linear-gradient(to right, transparent, black, transparent);
+    opacity: 0.3;
+}
+
+.section {
+    position: relative;
+}
+
+#about::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 70%;
+    height: 2px;
+
+    background: linear-gradient(to right, transparent, #000, transparent);
+    opacity: 0.3;
+}
+
+#about {
+    padding-top: 80px;
+}
+
+.payment-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.payment-option {
+    border: 1px solid #ddd;
+    padding: 16px;
+    border-radius: 12px;
+
+    background: #fafafa;
+    transition: 0.25s;
+
+    margin-bottom: 10px;
+}
+
+.payment-option:hover {
+    border-color: #000;
+    background: #fff;
+}
+
+.payment-option input:checked + span {
+    font-weight: 600;
+}
+
+
+html, body {
+    height: 100%;
+}
+
+.footer {
+    width: 100%;
+    margin-top: 80px;
+    padding: 40px;
+    text-align: center;
+    border-top: 1px solid #EAEAEA;
+}
+
+.page-wrapper {
+    min-height: calc(100vh - 100px);
+}
+
+#about, #contact {
+    display: block;
+}
+
+</style>
+</head>
+
+<body>    
+<div class="navbar" id="navbar">
+    <div class="logo">KWEN’S MAKE UP</div>
+    <div class="nav-links">
+    <a onclick="goHome()">Home</a>
+    <a onclick="scrollToSection('shop')">Shop</a>
+    <a onclick="scrollToSection('about')">About</a>
+    <a onclick="scrollToSection('contact')">Contact</a>
+    <a onclick="toggleCart()" class="cart-btn">
+    <span class="cart-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 6h15l-1.5 9h-13z"/>
+            <circle cx="9" cy="20" r="1"/>
+            <circle cx="18" cy="20" r="1"/>
+        </svg>
+    </span>
+    <span class="cart-count" id="cart-count">0</span>
+</a>
+</div>
+</div>
+
+</div>
+
+<section class="hero" id="home">
+    <div class="hero-text">
+        <h1>Timeless Beauty.<br>Refined Elegance.</h1>
+        <p>
+            Discover our curated collection of luxury cosmetics,
+            crafted for the discerning individual who values quality
+            and sophistication.
+        </p>
+        <button class="btn btn-primary" onclick="scrollToSection('shop')">
+            Shop Now
+        </button>
+    </div>
+
+    <div class="hero-image">
+        <img src="front.jpg">
+    </div>
+</section>
+
+<div class="container products" id="shop">
+    <h2>Featured Products</h2>
+    <div class="grid">
+
+    <div class="card">
+        <img src="AddictLip.webp">
+        <div class="product-category">LIPS</div>
+        <div class="product-name">Dior Addict Lip Maximizer</div>
+        <div class="price">₱2,650</div>
+
+        <div class="custom-select">
+    <div class="select-trigger" onclick="toggleSelect(this)">
+        Select Shade
+        <span class="arrow">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2">
+        <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+</span>
+    </div>
+
+    <div class="options">
+        <div onclick="selectOption(this)">001 Pink</div>
+        <div onclick="selectOption(this)">063 Pink Lilac</div>
+        <div onclick="selectOption(this)">003 Holographic Lavander</div>
+        <div onclick="selectOption(this)">010 Holographic Pink</div>
+        <div onclick="selectOption(this)">005 Shimmer Strawberry</div>
+    </div>
+</div>
+
+        <button class="add-btn" onclick="addToCart('Lipstick', 2650, null, this)">ADD TO CART</button>
+    </div>
+
+    <div class="card">
+        <img src="luminizer.jpg">
+        <div class="product-category">FACE</div>
+        <div class="product-name">Dior Natural Luminizer</div>
+        <div class="price">₱4,000</div>
+
+        <div class="custom-select">
+    <div class="select-trigger" onclick="toggleSelect(this)">
+        Select Shade
+        <span class="arrow">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2">
+        <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+</span>
+    </div>
+
+    <div class="options">
+        <div onclick="selectOption(this)">Nude Halo</div>
+        <div onclick="selectOption(this)">Gold Halo</div>
+        <div onclick="selectOption(this)">Pink Halo</div>
+    </div>
+</div>
+
+        <button class="add-btn" onclick="addToCart('Foundation', 4000, null, this)">ADD TO CART</button>
+    </div>
+
+    <div class="card">
+        <img src="eyeshadow.jpg">
+        <div class="product-category">EYES</div>
+        <div class="product-name">Diorshow 5 Couleurs - Limited Edition</div>
+        <div class="price">₱4,530</div>
+
+        <div class="custom-select">
+    <div class="select-trigger" onclick="toggleSelect(this)">
+        Select Shade
+        <span class="arrow">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2">
+        <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+</span>
+    </div>
+
+    <div class="options">
+        <div onclick="selectOption(this)">Brown Brocart</div>
+        <div onclick="selectOption(this)">Rose Moire</div>
+        <div onclick="selectOption(this)">Lilac Tulle</div>
+        <div onclick="selectOption(this)">Midnight Lame</div>
+    </div>
+</div>
+
+        <button class="add-btn" onclick="addToCart('Eyeshadow', 4530, null, this)">ADD TO CART</button>
+    </div>
+
+    <div class="card">
+        <img src="fragrance.jpg">
+        <div class="product-category">FRAGRANCE</div>
+        <div class="product-name">La Collection Privée Christian Dior luxury</div>
+        <div class="price">₱20,980</div>
+
+        <div class="custom-select">
+    <div class="select-trigger" onclick="toggleSelect(this)">
+        Select Scent
+        <span class="arrow">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2">
+        <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+</span>
+    </div>
+
+    <div class="options">
+        <div onclick="selectOption(this)">Gris Dior</div>
+        <div onclick="selectOption(this)">Lucky</div>
+        <div onclick="selectOption(this)">Jasmin des Anges</div>
+    </div>
+</div>
+
+        <button class="add-btn" onclick="addToCart('Fragrance', 20980, null, this)">ADD TO CART</button>
+    </div>
+
+    <div class="card">
+        <img src="blush.jpg">
+        <div class="product-category">CHEEKS</div>
+        <div class="product-name">Dior Backstage Blush</div>
+        <div class="price">₱2,850</div>
+
+        <div class="custom-select">
+    <div class="select-trigger" onclick="toggleSelect(this)">
+        Select Shade
+        <span class="arrow">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2">
+        <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+</span>
+    </div>
+
+    <div class="options">
+        <div onclick="selectOption(this)">Pink</div>
+        <div onclick="selectOption(this)">Berry</div>
+        <div onclick="selectOption(this)">Rosewood</div>
+        <div onclick="selectOption(this)">Cherry</div>
+        <div onclick="selectOption(this)">Candy</div>
+    </div>
+</div>
+
+        <button class="add-btn" onclick="addToCart('Blush', 2850, null, this)">ADD TO CART</button>
+    </div>
+
+    <div class="card">
+        <img src="foundation.jpg">
+        <div class="product-category">COSMETICS</div>
+        <div class="product-name">Dior Forever Skin Glow Foundation</div>
+        <div class="price">₱4,575</div>
+
+        <div class="custom-select">
+    <div class="select-trigger" onclick="toggleSelect(this)">
+        Select Shade
+        <span class="arrow">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2">
+        <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+</span>
+    </div>
+
+    <div class="options">
+        <div onclick="selectOption(this)">Neutral</div>
+        <div onclick="selectOption(this)">Warm</div>
+        <div onclick="selectOption(this)">Cool</div>
+    </div>
+</div>
+
+        <button class="add-btn" onclick="addToCart('Foundation', 4575, null, this)">ADD TO CART</button>
+    </div>
+
+</div>
+</div>
+
+<section class="section" id="about">
+    <div class="section-box">
+        <h2>About Us</h2>
+        <p>
+            At Kwen's Make Up, we believe beauty is more than appearance — 
+            it’s confidence, self-care, and self-expression.
+        </p>
+        <p>
+            Our mission is to provide premium, carefully curated cosmetics 
+            that enhance your natural beauty and elevate your everyday routine.
+        </p>
+    </div>
+</section>
+
+<section class="section light" id="contact">
+    <div class="section-box">
+        <h2>Contact Us</h2>
+        <p>Email: kwensmakeup@email.com</p>
+        <p>Phone: 09498256175</p>
+
+        <button class="btn btn-secondary" onclick="scrollToSection('home')">
+            Back to Top
+        </button>
+    </div>
+</section>
+
+<div class="cart-popup" id="cart">
+    <button class="close-cart" onclick="toggleCart()">✕</button>
+
+    <div id="cart-content">
+
+        <div id="empty-cart" style="text-align:center; margin-top:50px;">
+            <h3>Your cart is empty</h3>
+            <p>Add some products to get started</p>
+        </div>
+
+        <div id="cart-with-items" style="display:none;">
+
+            <h2>Your Cart</h2>
+
+            <div id="cart-items"></div>
+
+            <div class="order-summary">
+                <h3>Order Summary</h3>
+
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span>₱<span id="subtotal">0</span></span>
+                </div>
+
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span>₱<span id="shipping">100</span></span>
+                </div>
+
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span>₱<span id="total">0</span></span>
+                </div>
+
+                <button class="place-order-btn" onclick="goToCheckout()">
+                    Proceed to Checkout
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="checkout" id="checkout">
+  <div class="checkout-container">
+
+    <div class="checkout-left">
+
+      <button class="back-btn" onclick="toggleCart()">← Back to Cart</button>
+
+      <h1>Checkout</h1>
+
+      <h3>Contact Information</h3>
+      <input type="email" id="email" placeholder="Email address" required>
+
+        <div class="row">
+        <input type="text" id="first-name" placeholder="First name" required>
+        <input type="text" id="last-name" placeholder="Last name" required>
+        </div>
+
+        <input type="text" id="address" placeholder="Address" required>
+
+        <div class="row">
+        <input type="text" id="city" placeholder="City">
+        <input type="text" id="state" placeholder="State">
+        <input type="text" id="zip" placeholder="ZIP">
+        </div>
+
+      <h3>Payment Details</h3>
+
+      <h3>Payment Method</h3>
+
+<div class="payment-methods">
+
+  <label class="payment-option">
+  <input type="radio" name="payment" value="card" checked onclick="selectPayment('card')">
+  <span>Credit / Debit Card</span>
+</label>
+
+<label class="payment-option">
+  <input type="radio" name="payment" value="gcash" onclick="selectPayment('gcash')">
+  <span>GCash</span>
+</label>
+
+<label class="payment-option">
+  <input type="radio" name="payment" value="cod" onclick="selectPayment('cod')">
+  <span>Cash on Delivery</span>
+</label>
+
+</div>
+
+<div id="card-payment">
+  <input type="text" id="card-number" placeholder="Card number">
+  <div class="row">
+    <input type="text" id="card-name" placeholder="Cardholder name">
+    <input type="text" id="card-exp" placeholder="MM/YY">
+  </div>
+  <input type="text" id="card-cvv" placeholder="CVV">
+</div>
+
+<div id="gcash-payment" style="display:none;">
+  <input type="text" id="gcash-number" placeholder="GCash Number (09XXXXXXXXX)">
+</div>
+
+<div id="cod-payment" style="display:none;">
+  <p style="color:#555;">Pay in cash when your order arrives.</p>
+</div>
+
+    <div class="checkout-right">
+        
+      <h3>Order Summary</h3>
+
+      <div id="checkout-items"></div>
+
+      <div class="summary-line">
+        <span>Subtotal</span>
+        <span>₱<span id="checkout-subtotal">0</span></span>
+      </div>
+
+      <div class="summary-line">
+        <span>Shipping</span>
+        <span>₱<span id="checkout-shipping">100</span></span>
+      </div>
+
+      <hr>
+
+      <div class="summary-total">
+        <span>Total</span>
+        <span>₱<span id="checkout-total">0</span></span>
+      </div>
+
+      <button class="checkout-btn" onclick="placeOrder()">
+      PROCEED TO CHECKOUT
+      </button>
+
+    </div>
+</div>
+
+<div class="summary" id="summary">
+    <h2>Order Summary</h2>
+    <div id="summary-items"></div>
+    <h3>Total: ₱<span id="summary-total"></span></h3>
+    <button onclick="goHome()" class="place-order-btn">Back to Home</button>
+</div>
+<div class="footer" id="footer">
+© 2026 KWEN’S MAKE UP — All rights reserved
+</div>
+
+<div id="success-popup" class="success-popup">
+    <div class="success-box">
+        <div class="checkmark">✔</div>
+        <h2>Order Confirmed</h2>
+
+        <div id="receipt"></div>
+
+        <button onclick="closeSuccess()">Back to Home</button>
+    </div>
+</div>
+<div id="error-popup" class="success-popup">
+    <div class="success-box" style="border-top: 5px solid red;">
+        <h2 style="color:red;">Error</h2>
+        <p id="error-message">Something went wrong</p>
+        <button onclick="closeError()">OK</button>
+    </div>
+</div>
+
+<script>
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function showSection(sectionId) {
+    const sections = ["home", "shop", "about", "contact", "checkout", "summary"];
+
+    sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.style.display = "none";
+        }
+    });
+
+    const active = document.getElementById(sectionId);
+
+    if (sectionId === "checkout") {
+        active.style.display = "flex";
+    } else {
+        active.style.display = "block";
+    }
+
+    setActiveNav(sectionId);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function addToCart(name, price, image, button) {
+    const card = button.closest(".card");
+
+    
+    const img = card.querySelector("img").src;
+
+    const select = card.querySelector(".custom-select");
+    const shade = select?.dataset.selected || "Default";
+
+    let item = cart.find(i => i.name === name && i.shade === shade);
+
+    if (item) {
+        item.qty++;
+    } else {
+        cart.push({ name, price, shade, image: img, qty: 1 }); 
+    }
+
+    updateCart();
+
+    const cartIcon = document.querySelector(".cart-icon");
+    const cartCount = document.querySelector(".cart-count");
+
+    cartIcon.classList.add("cart-bounce");
+    cartCount.classList.add("cart-bounce");
+
+    setTimeout(() => {
+        cartIcon.classList.remove("cart-bounce");
+        cartCount.classList.remove("cart-bounce");
+    }, 400);
+}
+
+function updateCart() {
+    let cartItems = document.getElementById("cart-items");
+    let emptyCart = document.getElementById("empty-cart");
+    let cartWithItems = document.getElementById("cart-with-items");
+
+    cartItems.innerHTML = "";
+
+    let subtotal = 0;
+    let totalCount = 0;
+
+    if (cart.length === 0) {
+        emptyCart.style.display = "block";
+        cartWithItems.style.display = "none";
+    } else {
+        emptyCart.style.display = "none";
+        cartWithItems.style.display = "block";
+
+        cart.forEach((item, i)=> {
+            subtotal += item.price * item.qty;
+            totalCount += item.qty;
+
+            cartItems.innerHTML += `
+            <div class="cart-item">
+                <div>
+                    ${item.name} (${item.shade})<br>
+                    ₱${item.price}
+                </div>
+                <div class="qty">
+                    <button onclick="changeQty(${i},-1)">-</button>
+                    ${item.qty}
+                    <button onclick="changeQty(${i},1)">+</button>
+                </div>
+            </div>`;
+        });
+    }
+
+    const shipping = cart.length > 0 ? 100 : 0;
+    const total = subtotal + shipping;
+
+    document.getElementById("subtotal").innerText = subtotal;
+    document.getElementById("shipping").innerText = shipping;
+    document.getElementById("total").innerText = total;
+    document.getElementById("cart-count").innerText = totalCount;
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function changeQty(i, change) {
+    cart[i].qty += change;
+    if (cart[i].qty <= 0) cart.splice(i,1);
+    updateCart();
+}
+
+function toggleCart() {
+    document.getElementById("cart").classList.toggle("active");
+}
+
+function placeOrder() {
+    const email = document.getElementById("email");
+    const fname = document.getElementById("first-name");
+    const lname = document.getElementById("last-name");
+    const address = document.getElementById("address");
+
+    const payment = document.querySelector('input[name="payment"]:checked').value;
+
+    let isValid = true;
+
+    const required = [email, fname, lname, address];
+
+    if (payment === "card") {
+        required.push(
+            document.getElementById("card-number"),
+            document.getElementById("card-name"),
+            document.getElementById("card-exp"),
+            document.getElementById("card-cvv")
+        );
+    }
+
+    if (payment === "gcash") {
+        required.push(document.getElementById("gcash-number"));
+    }
+
+    required.forEach(field => {
+        if (!field.value.trim()) {
+            isValid = false;
+            field.style.border = "1px solid red";
+            field.style.background = "#fff0f0";
+        } else {
+            field.style.border = "1px solid #ddd";
+            field.style.background = "#f5f5f5";
+        }
+    });
+
+    if (!isValid) {
+        showError("Please complete all required fields.");
+        return;
+    }
+
+    showReceipt(payment);
+}
+
+function showSummary(name,address,phone,payment) {
+    showSection("summary");
+
+    let total = 0;
+    let summary = document.getElementById("summary-items");
+    summary.innerHTML = "";
+
+    cart.forEach(item=>{
+        total += item.price * item.qty;
+        summary.innerHTML += `<p>${item.name} x${item.qty} - ₱${item.price*item.qty}</p>`;
+    });
+
+    summary.innerHTML += `
+    <p><b>${name}</b></p>
+    <p>${address}</p>
+    <p>${phone}</p>
+    <p><b>Payment:</b> ${payment}</p>`;
+
+    document.getElementById("summary-total").innerText = total;
+
+    cart = [];
+    localStorage.setItem("cart","[]");
+    updateCart();
+
+    setTimeout(() => {
+        goHome();
+    }, 3000);
+}
+
+window.addEventListener("scroll", () => {
+    const navbar = document.getElementById("navbar");
+
+    if (window.scrollY > 50) {
+        navbar.classList.add("sticky");
+        document.body.classList.add("sticky-padding"); // FIX
+    } else {
+        navbar.classList.remove("sticky");
+        document.body.classList.remove("sticky-padding"); // FIX
+    }
+});
+window.addEventListener("scroll", () => {
+    const sections = ["home", "shop", "about", "contact"];
+    let scrollPos = window.scrollY + window.innerHeight / 2;
+
+    sections.forEach((id) => {
+        const section = document.getElementById(id);
+        if (!section) return;
+
+        const top = section.offsetTop;
+        const bottom = top + section.offsetHeight;
+
+        if (scrollPos >= top && scrollPos < bottom) {
+            setActiveNav(id);
+        }
+    });
+});
+
+function scrollToSection(id) {
+    const sections = ["home", "shop", "about", "contact"];
+
+    sections.forEach(sec => {
+        const el = document.getElementById(sec);
+        if (el) {
+            el.style.display = (sec === "home") ? "flex" : "block";
+        }
+    });
+
+    document.getElementById("checkout").style.display = "none";
+    document.getElementById("summary").style.display = "none";
+
+    document.getElementById("footer").style.display = "block"; // restore footer
+
+    const element = document.getElementById(id);
+
+    window.scrollTo({
+        top: element.offsetTop - 80,
+        behavior: "smooth"
+    });
+
+    setActiveNav(id);
+}
+
+
+function setActiveNav(section) {
+    document.querySelectorAll(".nav-links a").forEach(link => {
+        link.classList.remove("active");
+    });
+
+    const map = {
+        home: 0,
+        shop: 1,
+        about: 2,
+        contact: 3
+    };
+
+    const links = document.querySelectorAll(".nav-links a");
+    if (map[section] !== undefined) {
+        links[map[section]].classList.add("active");
+    }
+}
+
+function toggleSelect(el) {
+    const options = el.nextElementSibling;
+    const isOpen = options.classList.contains("show");
+
+    document.querySelectorAll(".options").forEach(opt => {
+        opt.classList.remove("show");
+        opt.previousElementSibling.classList.remove("active");
+    });
+
+    if (!isOpen) {
+        options.classList.add("show");
+        el.classList.add("active");
+    }
+}
+
+function selectOption(option) {
+    const select = option.closest(".custom-select");
+    const trigger = select.querySelector(".select-trigger");
+
+    trigger.childNodes[0].nodeValue = option.innerText + " ";
+
+    select.dataset.selected = option.innerText;
+
+    select.querySelector(".options").classList.remove("show");
+    trigger.classList.remove("active");
+}
+
+document.addEventListener("click", function(e) {
+    if (!e.target.closest(".custom-select")) {
+        document.querySelectorAll(".options").forEach(opt => {
+            opt.classList.remove("show");
+            opt.previousElementSibling.classList.remove("active");
+        });
+    }
+});
+
+function loadCheckoutSummary() {
+    let container = document.getElementById("checkout-items");
+    let subtotal = 0;
+
+    container.innerHTML = "";
+
+    cart.forEach(item => {
+        subtotal += item.price * item.qty;
+
+        container.innerHTML += `
+        <div class="checkout-item">
+            <img src="${item.image}">
+            <div>
+                <div>${item.name}</div>
+                <small>${item.shade}</small><br>
+                <small>Qty: ${item.qty}</small>
+            </div>
+            <div>₱${item.price}</div>
+        </div>`;
+    });
+
+    document.getElementById("checkout-subtotal").innerText = subtotal;
+
+    const shipping = 100;
+    document.getElementById("checkout-shipping").innerText = shipping;
+    document.getElementById("checkout-total").innerText = subtotal + shipping;
+}
+
+function showError(message) {
+    document.getElementById("error-message").innerText = message;
+    document.getElementById("error-popup").style.display = "flex";
+}
+
+function closeError() {
+    document.getElementById("error-popup").style.display = "none";
+}
+
+function selectPayment(type) {
+    document.getElementById("card-payment").style.display = "none";
+    document.getElementById("gcash-payment").style.display = "none";
+    document.getElementById("cod-payment").style.display = "none";
+
+    document.getElementById(type + "-payment").style.display = "block";
+}
+
+function showReceipt(payment) {
+    let receipt = document.getElementById("receipt");
+
+    let html = "<h3>Order Summary</h3>";
+
+    let total = 0;
+
+    cart.forEach(item => {
+        let itemTotal = item.price * item.qty;
+        total += itemTotal;
+
+        html += `
+        <div style="display:flex; justify-content:space-between;">
+            <span>${item.name} (${item.shade}) x${item.qty}</span>
+            <span>₱${itemTotal}</span>
+        </div>`;
+    });
+
+    html += `<hr>`;
+    html += `<p><b>Total: ₱${total + 100}</b></p>`;
+
+    html += `<p><b>Payment:</b> ${payment.toUpperCase()}</p>`;
+
+    receipt.innerHTML = html;
+
+    cart = [];
+    localStorage.setItem("cart", "[]");
+    updateCart();
+
+    document.getElementById("success-popup").style.display = "flex";
+}
+
+function goToCheckout() {
+    document.getElementById("home").style.display = "none";
+    document.getElementById("shop").style.display = "none";
+    document.getElementById("about").style.display = "none";
+    document.getElementById("contact").style.display = "none";
+
+    document.getElementById("checkout").style.display = "flex";
+
+    document.getElementById("footer").style.display = "none";
+    toggleCart();
+    loadCheckoutSummary();
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function goHome() {
+    document.getElementById("home").style.display = "flex";
+    document.getElementById("shop").style.display = "block";
+    document.getElementById("about").style.display = "block";
+    document.getElementById("contact").style.display = "block";
+
+    document.getElementById("checkout").style.display = "none";
+    document.getElementById("summary").style.display = "none";
+
+    document.getElementById("footer").style.display = "block"; // 🔥 show again
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    setActiveNav("home");
+}
+
+function closeSuccess() {
+    document.getElementById("success-popup").style.display = "none";
+
+    document.getElementById("receipt").innerHTML = "";
+
+    goHome();
+}
+
+updateCart();
+
+</script>
+
+</body>
+</html>
