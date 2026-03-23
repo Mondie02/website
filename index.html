@@ -1518,10 +1518,10 @@ window.addEventListener("scroll", () => {
 
     if (window.scrollY > 50) {
         navbar.classList.add("sticky");
-        document.body.classList.add("sticky-padding"); // FIX
+        document.body.classList.add("sticky-padding"); 
     } else {
         navbar.classList.remove("sticky");
-        document.body.classList.remove("sticky-padding"); // FIX
+        document.body.classList.remove("sticky-padding"); 
     }
 });
 window.addEventListener("scroll", () => {
@@ -1554,7 +1554,7 @@ function scrollToSection(id) {
     document.getElementById("checkout").style.display = "none";
     document.getElementById("summary").style.display = "none";
 
-    document.getElementById("footer").style.display = "block"; // restore footer
+    document.getElementById("footer").style.display = "block"; 
 
     const element = document.getElementById(id);
 
@@ -1722,7 +1722,7 @@ function goHome() {
     document.getElementById("checkout").style.display = "none";
     document.getElementById("summary").style.display = "none";
 
-    document.getElementById("footer").style.display = "block"; // 🔥 show again
+    document.getElementById("footer").style.display = "block"; 
 
     window.scrollTo({ top: 0, behavior: "smooth" });
 
